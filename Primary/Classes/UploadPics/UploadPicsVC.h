@@ -16,6 +16,9 @@
 
 @interface UploadPicsVC : UIViewController
 
+//asssign  weak
+
+
 - (instancetype)initWithColumnItem:(EZColumnItem *)columnItem;
 
 @end

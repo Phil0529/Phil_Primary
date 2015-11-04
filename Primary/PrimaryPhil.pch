@@ -21,7 +21,7 @@
 #import <Foundation/Foundation.h>
 #import "Macros.h"
 //#import "DeviceGlobal.h"
-//#import "LanguageBundle.h"
+#import "LanguageBundle.h"
 //#import "UINavigationController+Rotation_IOS6.h"
 //#import "NSString+Additions.h"
 //#import "MLBlackTransition.h"

@@ -8,14 +8,15 @@
 
 #import "ViewController.h"
 #import "UploadPicsVC.h"
+#import "BadiduMobAdVC.h"
 
 static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifierVC";
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_tbView;
-    NSArray *_dataArray;
 }
+@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
@@ -27,10 +28,18 @@ static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifier
     [self philInitUIVC];
 
 }
+
+- (NSArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = @[@"Upload Pics",@"Baidu Advertisement"];
+    }
+    return _dataArray;
+}
+
 - (void)philInitDataVC{
-    _dataArray = @[@"Upload Pics"];
 }
 - (void)philInitUIVC{
+    
     _tbView = [[UITableView alloc] initWithFrame:CGRectMake(0.f, 0.f, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _tbView.delegate = self;
     _tbView.dataSource = self;
@@ -40,7 +49,7 @@ static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifier
 
 #pragma mark UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _dataArray.count;
+    return self.dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -48,7 +57,7 @@ static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifier
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TableViewCellReuseIdentifierVC];
     }
-    cell.textLabel.text = [_dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
     return cell;
 }
 
@@ -60,6 +69,11 @@ static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifier
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        case 1:{
+            BadiduMobAdVC *vc = [[BadiduMobAdVC alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
             
         default:
             break;
