@@ -9,6 +9,7 @@
 #import "UploadPicsView.h"
 #import "EZPhilImageView.h"
 #import "FSMediaPicker.h"
+#import "UIImage+Color.h"
 
 @class FSMediaPicker;
 
@@ -61,12 +62,6 @@
         _secondBgView = [[UIView alloc] initWithFrame:CGRectMake(0.f, CGRectGetMaxY(_firstBgView.frame), self.frame.size.width, BTNADD_WIDITH + 2 * THUMB_SPACING - 1.f)];
         _secondBgView.backgroundColor = COLORFORRGB(0xffffff);
         [self addSubview:_secondBgView];
-        
-        
-        
-        //        _thumBgView = [[UIView alloc] initWithFrame:CGRectMake(THUMB_SPACING,THUMB_SPACING , BTNADD_WIDITH, BTNADD_WIDITH)];
-        //        [_thumBgView setBackgroundColor:[UIColor whiteColor]];
-        //        [_secondBgView addSubview:_thumBgView];
         
         _addBtn = [UIButton buttonWithType:0];
         _addBtn.frame = CGRectMake(THUMB_SPACING, THUMB_SPACING, BTNADD_WIDITH, BTNADD_WIDITH);
@@ -151,10 +146,16 @@
         _uploadBtn = [UIButton buttonWithType:0];
         _uploadBtn.frame = CGRectMake(27.5f, CGRectGetMaxY(_showAgreementLabel.frame), SCREEN_WIDTH - 55.f, 40.f);
         [_uploadBtn setBackgroundColor:FOREGROUND_COLOR];
-        [_uploadBtn.layer setCornerRadius:20.f];
+
+//        [_uploadBtn setBackgroundImage:[UIImage imageWithColor:FOREGROUND_COLOR size:_uploadBtn.frame.size] forState:0];
+//        [_uploadBtn setBackgroundImage:[UIImage imageWithColor:[UIColor redColor] size:_uploadBtn.frame.size] forState:1 << 1];
+        
+        [_uploadBtn setTitle:@"确认上传" forState:0];
+        [_uploadBtn.layer setCornerRadius:CGRectGetHeight(_uploadBtn.frame)/2];
+
         [_uploadBtn setTitleColor:[UIColor whiteColor] forState:0];
         [_uploadBtn.titleLabel setFont:FONT(16.5f)];
-        [_uploadBtn setTitle:@"确认上传" forState:0];
+
         [_uploadBtn addTarget:self action:@selector(clickOnUpload:) forControlEvents:1<<6];
         [_fourthBgView addSubview:_uploadBtn];
         
@@ -194,7 +195,9 @@
     [policy setUserInteractionEnabled:YES];
     [policy.scrollView setShowsHorizontalScrollIndicator:NO];
     [policy.scrollView setShowsVerticalScrollIndicator:NO];
-    [policy setOpaque:NO];//使网页透明
+    [policy setOpaque:NO];
+    
+    //使网页透明
     //    NSURL *reqURL = [NSURL URLWithString:[[ConfigManger sharedManager] getConfigByKey:cfgkeyagreement]];
     //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:reqURL];
     //    [policy loadRequest:request];
@@ -233,20 +236,13 @@
 
 
 - (void)refreshView:(NSInteger )imageCount andImageData:(NSArray *)imagesArr{
-    //
     [_secondBgView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isMemberOfClass:[EZPhilImageView class]]) {
             [obj removeFromSuperview];
         }
     }];
-    
-    SWLogD(@"%@", _secondBgView.subviews);
-    
     [_addBtn setHidden:NO];
-    if (imageCount ==0) {
-        [_statementView setHidden:NO];
-        [_secondBgView addSubview:_statementView];
-    }
+
     [_statementView setHidden:YES];
     [_addBtn setFrame:CGRectMake(THUMB_SPACING+imageCount%4 * (BTNADD_WIDITH + THUMB_SPACING),imageCount/4 * (BTNADD_WIDITH + THUMB_SPACING) + THUMB_SPACING,BTNADD_WIDITH, BTNADD_WIDITH)];
     [_secondBgView setFrame:CGRectMake(0.f, CGRectGetMaxY(_firstBgView.frame), SCREEN_WIDTH,THUMB_SPACING + (1+imageCount/4) * (BTNADD_WIDITH +THUMB_SPACING))];
@@ -273,6 +269,9 @@
             [_addBtn setHidden:YES];
         }
         [self addRemoveButtonOnThumbImage:thumbImageView andTag:i];
+    }
+    if (imageCount ==0) {
+        [_statementView setHidden:NO];
     }
 }
 

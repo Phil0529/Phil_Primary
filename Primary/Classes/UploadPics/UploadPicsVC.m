@@ -19,6 +19,13 @@
 #import <CoreLocation/CoreLocation.h>
 #import "CLLocation+GPSDictionary.h"
 
+//Util
+#import "EZUtils.h"
+#import "EZWriteGPSToImagePhil.h"
+#import <MBProgressHUD.h>
+#import "UserCenter.h"
+
+
 typedef NS_ENUM(NSUInteger, UploadType)
 {
     UploadType_Image = 1,
@@ -37,11 +44,12 @@ typedef NS_ENUM(NSUInteger, UploadType)
     
     
     NSInteger _selectImgCount;
-    NSInteger _uplpoadType;
     
     UploadType _uploadType;
+    
 }
 
+@property (nonatomic, strong) MBProgressHUD *mbProgressView;
 @property (nonatomic, strong) UploadPicsView *mainView;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
 
@@ -74,19 +82,18 @@ typedef NS_ENUM(NSUInteger, UploadType)
     if ([self respondsToSelector:@selector(setAutomaticallyAdjustsScrollViewInsets:)]) {
         self.automaticallyAdjustsScrollViewInsets =NO;
     }
-    
-    //    _imagesArr = [NSMutableArray arrayWithCapacity:8];
-    
+
     _locationDict = [NSMutableDictionary new];
 }
 - (void)philInitUIUPVC{
-//    self.mainView.frame = CGRectMake(0.f, NAVBAR_HEIGHT + STATUSBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBAR_HEIGHT);
     self.mainView.backgroundColor = BACKGROUND_COLOR;
     _mainView.delegate = self;
     [self.view addSubview:_mainView];
-}
-//
 
+    [self.navigationController.view addSubview:self.mbProgressView];
+    _mbProgressView.mode = MBProgressHUDModeAnnularDeterminate;
+    _mbProgressView.labelText = LBLocalized(@"Uploading");
+}
 
 
 
@@ -102,9 +109,6 @@ typedef NS_ENUM(NSUInteger, UploadType)
     [mediaPicker showFromView:btn];
 
 }
-- (void)uploadPics:(UIButton *)btn{
-    
-}
 - (void)selectAgreement:(UIButton *)btn{
     
 }
@@ -113,6 +117,53 @@ typedef NS_ENUM(NSUInteger, UploadType)
     [self.imagesArr removeObjectAtIndex:imageTag];
     [_mainView refreshView:self.imagesArr.count andImageData:self.imagesArr];
     
+    
+}
+
+- (void)uploadPics:(UIButton *)btn{
+//    if (_imagesArr.count == 0) {
+//        [EZUtils showNotifyMsg:LBLocalized(@"Reminder_Select_Photo") inView:self.view dismissed:nil];
+//    }
+//    
+//    else if (ISEMPTYSTR(_mainView.textDescView.text)) {
+//        [EZUtils showNotifyMsg:LBLocalized(@"Reminder_Add_Introduction") inView:self.view dismissed:nil];
+//    }
+//    else if(_mainView.textDescView.text.length < 5){
+//        [EZUtils showNotifyMsg:LBLocalized(@"Reminder_Introduction_Content") inView:self.view dismissed:nil];
+//    }
+//    else if (!_mainView.checkBtn.selected) {
+//        [EZUtils showNotifyMsg:LBLocalized(@"Reminder_Agree_Accord") inView:self.view dismissed:nil];
+//    }
+    if (NO) {
+       
+    }
+    else if (_uploadType == UploadType_Image) {
+        EZWriteGPSToImagePhil *util = [[EZWriteGPSToImagePhil alloc]init];
+        NSMutableArray *imageDataArr = [NSMutableArray arrayWithCapacity:MaxImageCount];
+        for (NSDictionary *dict in _imagesArr) {
+            if (dict[@"mediaInfoType"] == FSMediaInfoTypePhotoAlbum) {
+                [imageDataArr addObject:[util philGetImgDataWithURL:[dict objectForKey:@"imageURL"] andLocation:_locationDict]];
+            }
+            if (dict[@"mediaInfoType"] == FSMediaInfoTakePhoto) {
+                [imageDataArr addObject:[EZWriteGPSToImagePhil philGetImgDataWithImage:[dict objectForKey:@"originalImage"] andLocation:_locationDict]];
+            }
+        }
+        [self uploadImages:imageDataArr];
+    }
+    else if(_uploadType == UploadType_Video){
+        NSData *dataToUpload = [NSData dataWithContentsOfURL:[[_imagesArr firstObject] objectForKey:@"videoURL"]];
+        [self uploadDataVideo:dataToUpload];
+    }
+
+}
+- (void)uploadImages:(NSArray *)imagesArr{
+    [_mbProgressView show:YES];
+    [_mainView.uploadBtn setEnabled:NO];
+    [_mainView.addBtn setEnabled:NO];
+    NSString *mpno = [UserCenter defaultCenter].currentUser.mpno;
+    
+}
+- (void)uploadDataVideo:(NSData *)data{
     
 }
 
@@ -140,7 +191,7 @@ typedef NS_ENUM(NSUInteger, UploadType)
     }
     if ([[mediaInfo objectForKey:@"mediaInfoType"] isEqualToString:FSMediaInfoTypeVedio]) {
         [_imagesArr removeAllObjects];
-        [self.mainView.thumBgView.subviews  makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        [self.mainView.secondBgView.subviews  makeObjectsPerformSelector:@selector(removeFromSuperview)];
         _uploadType = UploadType_Video;
         UIImageView *playIcon = [[UIImageView alloc] initWithImage:IMAGE(@"video_icon")];
         UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(THUMBSPACING, THUMBSPACING, BTNADD_WIDITH, BTNADD_WIDITH)];
@@ -158,17 +209,6 @@ typedef NS_ENUM(NSUInteger, UploadType)
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
 - (UploadPicsView *)mainView{
     if (!_mainView) {
         _mainView = [[UploadPicsView alloc] initWithFrame:CGRectMake(0.f, NAVBAR_HEIGHT + STATUSBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBAR_HEIGHT)];
@@ -180,6 +220,13 @@ typedef NS_ENUM(NSUInteger, UploadType)
         _imagesArr = [NSMutableArray arrayWithCapacity:MaxImageCount];
     }
     return _imagesArr;
+}
+- (MBProgressHUD *)mbProgressView{
+    if (!_mbProgressView) {
+        _mbProgressView = [[MBProgressHUD alloc] init];
+        [_mbProgressView setCenter:CGPointMake(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)];
+    }
+    return _mbProgressView;
 }
 
 

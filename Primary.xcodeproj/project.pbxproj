@@ -52,6 +52,11 @@
 		823F0C0C1BE1BDAD00E6A514 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823F0C0B1BE1BDAD00E6A514 /* SystemConfiguration.framework */; };
 		823F0C131BE1CCDD00E6A514 /* BaiduMobFirstVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 823F0C121BE1CCDD00E6A514 /* BaiduMobFirstVC.m */; };
 		823F0C161BE1CCEF00E6A514 /* BaiduMobSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 823F0C151BE1CCEF00E6A514 /* BaiduMobSecondVC.m */; };
+		8255174C1BEB84B3009D10B3 /* UploadPicsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8255174B1BEB84B3009D10B3 /* UploadPicsManager.m */; };
+		8255174F1BEB8706009D10B3 /* EZUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8255174E1BEB8706009D10B3 /* EZUtils.m */; };
+		825517531BEB88AE009D10B3 /* Primary.t in Resources */ = {isa = PBXBuildFile; fileRef = 825517521BEB88AE009D10B3 /* Primary.t */; };
+		825517561BEB8DD1009D10B3 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 825517551BEB8DD1009D10B3 /* UIImage+Color.m */; };
+		8255175C1BEB956C009D10B3 /* AppServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8255175B1BEB956C009D10B3 /* AppServer.m */; };
 		829E25441BE706E70081C08C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829E25431BE706E70081C08C /* Localizable.strings */; };
 		829E25471BE70FAD0081C08C /* UIImage+Function.m in Sources */ = {isa = PBXBuildFile; fileRef = 829E25461BE70FAD0081C08C /* UIImage+Function.m */; };
 		82A118A01BDF9CD200D22130 /* UploadPicsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A1189F1BDF9CD200D22130 /* UploadPicsVC.m */; };
@@ -185,6 +190,15 @@
 		823F0C121BE1CCDD00E6A514 /* BaiduMobFirstVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMobFirstVC.m; sourceTree = "<group>"; };
 		823F0C141BE1CCEF00E6A514 /* BaiduMobSecondVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobSecondVC.h; sourceTree = "<group>"; };
 		823F0C151BE1CCEF00E6A514 /* BaiduMobSecondVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMobSecondVC.m; sourceTree = "<group>"; };
+		8255174A1BEB84B3009D10B3 /* UploadPicsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPicsManager.h; sourceTree = "<group>"; };
+		8255174B1BEB84B3009D10B3 /* UploadPicsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPicsManager.m; sourceTree = "<group>"; };
+		8255174D1BEB8706009D10B3 /* EZUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUtils.h; sourceTree = "<group>"; };
+		8255174E1BEB8706009D10B3 /* EZUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUtils.m; sourceTree = "<group>"; };
+		825517521BEB88AE009D10B3 /* Primary.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Primary.t; path = ../../../xiaohancheng/Documents/Primary/Primary.t; sourceTree = "<group>"; };
+		825517541BEB8DD1009D10B3 /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		825517551BEB8DD1009D10B3 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		8255175A1BEB956C009D10B3 /* AppServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppServer.h; sourceTree = "<group>"; };
+		8255175B1BEB956C009D10B3 /* AppServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppServer.m; sourceTree = "<group>"; };
 		829E25431BE706E70081C08C /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../../../xiaohancheng/Documents/Primary/Primary/Utils/Localizable.strings; sourceTree = "<group>"; };
 		829E25451BE70FAD0081C08C /* UIImage+Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Function.h"; sourceTree = "<group>"; };
 		829E25461BE70FAD0081C08C /* UIImage+Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Function.m"; sourceTree = "<group>"; };
@@ -316,6 +330,7 @@
 		8211FF3A1BD87A2D0084AA17 = {
 			isa = PBXGroup;
 			children = (
+				825517521BEB88AE009D10B3 /* Primary.t */,
 				8211FF451BD87A2D0084AA17 /* Primary */,
 				821F5B491BD88591009B1E9C /* Macros.h */,
 				8211FF491BD87A2D0084AA17 /* AppDelegate.h */,
@@ -417,9 +432,11 @@
 		821D90471BDFA6CB0026E159 /* USER_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				821D904B1BDFA72E0026E159 /* Model */,
+				8255175A1BEB956C009D10B3 /* AppServer.h */,
+				8255175B1BEB956C009D10B3 /* AppServer.m */,
 				821D90481BDFA6D70026E159 /* UserCenter.h */,
 				821D90491BDFA6D70026E159 /* UserCenter.m */,
+				821D904B1BDFA72E0026E159 /* Model */,
 			);
 			path = USER_SDK;
 			sourceTree = "<group>";
@@ -496,6 +513,10 @@
 		825352581BD87CC00099D2F4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				825517541BEB8DD1009D10B3 /* UIImage+Color.h */,
+				825517551BEB8DD1009D10B3 /* UIImage+Color.m */,
+				8255174D1BEB8706009D10B3 /* EZUtils.h */,
+				8255174E1BEB8706009D10B3 /* EZUtils.m */,
 				829E25451BE70FAD0081C08C /* UIImage+Function.h */,
 				829E25461BE70FAD0081C08C /* UIImage+Function.m */,
 				8229D5EE1BE6F9AA0010AFB7 /* LanguageBundle.h */,
@@ -516,6 +537,8 @@
 				82A1189F1BDF9CD200D22130 /* UploadPicsVC.m */,
 				821D906F1BDFAC910026E159 /* UploadPicsView.h */,
 				821D90701BDFAC910026E159 /* UploadPicsView.m */,
+				8255174A1BEB84B3009D10B3 /* UploadPicsManager.h */,
+				8255174B1BEB84B3009D10B3 /* UploadPicsManager.m */,
 			);
 			path = UploadPics;
 			sourceTree = "<group>";
@@ -758,6 +781,7 @@
 				82FB329A1BE2FD3A00223E3D /* ImagesPicker.xcassets in Resources */,
 				8214D0591BE21FB20088E604 /* baidumobadsdk.bundle in Resources */,
 				8211FF511BD87A2D0084AA17 /* Main.storyboard in Resources */,
+				825517531BEB88AE009D10B3 /* Primary.t in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,6 +854,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8255175C1BEB956C009D10B3 /* AppServer.m in Sources */,
 				82FB32A61BE2FD3A00223E3D /* PhotoAlbumManager.m in Sources */,
 				821D90541BDFA7900026E159 /* MTLModel+KTVNullableScalar.m in Sources */,
 				8211FF541BD87A2D0084AA17 /* Primary.xcdatamodeld in Sources */,
@@ -842,6 +867,7 @@
 				82A118E91BDF9DC700D22130 /* UploadItem.m in Sources */,
 				821D904E1BDFA72E0026E159 /* UserInfo.m in Sources */,
 				823F0BDD1BE1BA7C00E6A514 /* BadiduMobAdVC.m in Sources */,
+				8255174F1BEB8706009D10B3 /* EZUtils.m in Sources */,
 				821D90661BDFA8080026E159 /* ActivityDetailModel.m in Sources */,
 				8211FF4B1BD87A2D0084AA17 /* AppDelegate.m in Sources */,
 				821D90571BDFA7B50026E159 /* ResponseModel.m in Sources */,
@@ -866,6 +892,7 @@
 				82FB32B71BE2FF4D00223E3D /* CLLocation+GPSDictionary.m in Sources */,
 				821D90511BDFA74E0026E159 /* UserModel.m in Sources */,
 				82FB329F1BE2FD3A00223E3D /* JKAssetsThumbnailView.m in Sources */,
+				825517561BEB8DD1009D10B3 /* UIImage+Color.m in Sources */,
 				82FB329C1BE2FD3A00223E3D /* JKAssetsCollectionFooterView.m in Sources */,
 				82FB32A31BE2FD3A00223E3D /* JKPhotoBrowserCell.m in Sources */,
 				82A118A01BDF9CD200D22130 /* UploadPicsVC.m in Sources */,
@@ -875,6 +902,7 @@
 				82FB32AB1BE2FD8F00223E3D /* FSMediaPicker.m in Sources */,
 				82FB32B81BE2FF4D00223E3D /* EZPhilImageView.m in Sources */,
 				82FB32BA1BE2FF4D00223E3D /* NSDictionary+CLLocation.m in Sources */,
+				8255174C1BEB84B3009D10B3 /* UploadPicsManager.m in Sources */,
 				821D904A1BDFA6D70026E159 /* UserCenter.m in Sources */,
 				8214D05E1BE220320088E604 /* PageScrollView.m in Sources */,
 			);

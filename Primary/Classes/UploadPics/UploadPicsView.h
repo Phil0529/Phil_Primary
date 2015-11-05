@@ -31,9 +31,6 @@
 @property (nonatomic, strong) UIView *textBgView;
 @property (nonatomic, strong) UITextView *textDescView;
 @property (nonatomic, strong) UILabel *textPlaceholderLabel;
-@property (nonatomic, strong) UIView *lineFirst;
-@property (nonatomic, strong) UIView *thumBgView;
-@property (nonatomic, strong) UIView *lineTwo;
 @property (nonatomic, strong) UIButton *addBtn;
 @property (nonatomic, strong) UIView *locaImgView;
 @property (nonatomic, strong) UILabel *locaLabel;
@@ -49,8 +46,7 @@
 
 @property (nonatomic, weak) id<UploadPicsVCDelegate> delegate;
 
-@property (nonatomic, strong) void (^addImgBlock)();
-@property (nonatomic, strong) void (^checkAgreement)();
+
 
 
 - (instancetype)initWithFrame:(CGRect)frame;
