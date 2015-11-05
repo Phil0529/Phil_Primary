@@ -10,9 +10,11 @@
 
 
 @protocol UploadPicsVCDelegate <NSObject>
+
 - (void)addPics:(UIButton *)btn;
 - (void)uploadPics:(UIButton *)btn;
 - (void)selectAgreement:(UIButton *)btn;
+- (void)removeImage:(NSInteger )imageTag;
 @end
 
 
@@ -53,7 +55,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
-- (void)refreshView:(NSInteger )imageCount;
+- (void)refreshView:(NSInteger )imageCount andImageData:(NSArray *)imagesArr;
+
+//- (void)refreshViewByRemoveImageView:(NSInteger)imageCount;
 
 
 

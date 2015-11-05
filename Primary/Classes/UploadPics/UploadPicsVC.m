@@ -109,27 +109,36 @@ typedef NS_ENUM(NSUInteger, UploadType)
     
 }
 
+- (void)removeImage:(NSInteger )imageTag{
+    [self.imagesArr removeObjectAtIndex:imageTag];
+    [_mainView refreshView:self.imagesArr.count andImageData:self.imagesArr];
+    
+    
+}
+
 
 #pragma mark FSMediaPickerDelegate
 - (void)mediaPicker:(FSMediaPicker *)mediaPicker didFinishWithMediaInfo:(NSDictionary *)mediaInfo{
-    if ([[mediaInfo objectForKey:@"mediaType"] isEqualToString:FSMediaInfoTakePhoto]) {
+    if ([[mediaInfo objectForKey:@"mediaInfoType"] isEqualToString:FSMediaInfoTakePhoto]) {
         UIImage *thumbImg = [self getOriginImage:[mediaInfo originalImage] scaleToSize:CGSizeMake(157.f, 157.f)];
         _uploadType = UploadType_Image;
         NSDictionary *dictTakePhoto = @{@"originalImage":[mediaInfo originalImage],
-                                        @"thumbImage":thumbImg};
+                                        @"thumbImage":thumbImg,
+                                        @"mediaInfoType":FSMediaInfoTakePhoto};
         [self.imagesArr addObject:dictTakePhoto];
         
     }
-    if ([[mediaInfo objectForKey:@"mediaType"] isEqualToString:FSMediaInfoTypePhotoAlbum]) {
+    if ([[mediaInfo objectForKey:@"mediaInfoType"] isEqualToString:FSMediaInfoTypePhotoAlbum]) {
         _uploadType = UploadType_Image;
         for (JKAssets *asset in [mediaInfo objectForKey:UIImagePickerControllerMultiImages]) {
             NSDictionary *dict =  @{@"thumbImage":asset.thumbImg,
-                                    @"imageURL":asset.assetPropertyURL};
+                                    @"imageURL":asset.assetPropertyURL,
+                                    @"mediaInfoType":FSMediaInfoTypePhotoAlbum};
             [self.imagesArr addObject:dict];
         }
         
     }
-    if ([[mediaInfo objectForKey:@"mediaType"] isEqualToString:FSMediaInfoTypeVedio]) {
+    if ([[mediaInfo objectForKey:@"mediaInfoType"] isEqualToString:FSMediaInfoTypeVedio]) {
         [_imagesArr removeAllObjects];
         [self.mainView.thumBgView.subviews  makeObjectsPerformSelector:@selector(removeFromSuperview)];
         _uploadType = UploadType_Video;
@@ -139,11 +148,14 @@ typedef NS_ENUM(NSUInteger, UploadType)
         [imgView setImage:[UIImage thumbnailImageForVideo:[mediaInfo mediaURL]]];
         [imgView addSubview:playIcon];
         imgView.userInteractionEnabled = YES;
-        NSDictionary *dictVideo = @{@"videoURL":[mediaInfo mediaURL],@"thumbImage":[UIImage thumbnailImageForVideo:[mediaInfo mediaURL]]};
+        NSDictionary *dictVideo = @{@"videoURL":[mediaInfo mediaURL],
+                                    @"thumbImage":[UIImage thumbnailImageForVideo:[mediaInfo mediaURL]],
+                                    @"mediaInfoType":FSMediaInfoTypeVedio};
         [self.imagesArr addObject:dictVideo];
 
     }
-    [_mainView refreshView:self.imagesArr.count + _selectImgCount];
+    [_mainView refreshView:self.imagesArr.count andImageData:self.imagesArr] ;
+    
 }
 
 
@@ -217,6 +229,9 @@ typedef NS_ENUM(NSUInteger, UploadType)
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
 
 
 @end
