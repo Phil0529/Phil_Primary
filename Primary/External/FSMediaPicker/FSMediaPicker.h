@@ -31,7 +31,7 @@ UIKIT_EXTERN NSString *const FSMediaInfoTakePhoto;
 UIKIT_EXTERN NSString *const FSMediaInfoTypePhotoAlbum;
 UIKIT_EXTERN NSString *const FSMediaInfoTypeVedio;
 
-#define MaxImageCount 8
+
 
 @protocol FSMediaPickerDelegate <NSObject>
 @required

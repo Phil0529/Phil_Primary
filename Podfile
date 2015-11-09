@@ -15,5 +15,6 @@ pod 'UMengMessage', '~> 1.0'
 pod 'UMengAnalytics-NO-IDFA', '~> 3.0'
 pod 'SMS-For-iOS', '~> 1.0'
 pod 'CVKHierarchySearcher', '~> 0.1'
+pod 'HysteriaPlayer', '~>2.1.4'
 end
 

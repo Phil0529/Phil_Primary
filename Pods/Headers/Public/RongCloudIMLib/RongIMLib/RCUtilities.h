@@ -1,1 +1,1 @@
-../../../../RongCloudIMLib/Rong_Cloud_iOS_SDK_v2_3_4_stable/RongIMLib.framework/Headers/RCUtilities.h
+../../../../RongCloudIMLib/Rong_Cloud_iOS_SDK_v2_3_5_stable/RongIMLib.framework/Headers/RCUtilities.h

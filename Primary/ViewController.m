@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "UploadPicsVC.h"
 #import "BadiduMobAdVC.h"
+#import "GCDViewController.h"
 
 static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifierVC";
 
@@ -31,7 +32,7 @@ static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifier
 
 - (NSArray *)dataArray{
     if (!_dataArray) {
-        _dataArray = @[@"Upload Pics",@"Baidu Advertisement"];
+        _dataArray = @[@"Upload Pics",@"Baidu Advertisement",@"GCD"];
     }
     return _dataArray;
 }
@@ -74,6 +75,12 @@ static NSString *TableViewCellReuseIdentifierVC = @"TableViewCellReuseIdentifier
             [self.navigationController pushViewController:vc animated:YES];
             
         }
+        case 2:{
+            GCDViewController *vc = [[GCDViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+        
             
         default:
             break;

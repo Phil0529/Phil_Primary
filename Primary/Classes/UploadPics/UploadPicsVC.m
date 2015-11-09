@@ -25,6 +25,8 @@
 #import <MBProgressHUD.h>
 #import "UserCenter.h"
 
+#define MaxImageCount 8
+
 
 typedef NS_ENUM(NSUInteger, UploadType)
 {
@@ -107,7 +109,6 @@ typedef NS_ENUM(NSUInteger, UploadType)
     mediaPicker.upLoadMultiImageStatus = YES;
     mediaPicker.delegate = self;
     [mediaPicker showFromView:btn];
-
 }
 - (void)selectAgreement:(UIButton *)btn{
     
@@ -205,7 +206,10 @@ typedef NS_ENUM(NSUInteger, UploadType)
         [self.imagesArr addObject:dictVideo];
 
     }
+    _selectImgCount = self.imagesArr.count; 
     [_mainView refreshView:self.imagesArr.count andImageData:self.imagesArr] ;
+
+    
     
 }
 

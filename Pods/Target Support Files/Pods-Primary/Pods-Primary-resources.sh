@@ -58,6 +58,7 @@ install_resource()
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "HysteriaPlayer/HysteriaPlayer/point1sec.mp3"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SMS-For-iOS/SMS_SDK/en.lproj"
   install_resource "SMS-For-iOS/SMS_SDK/zh-Hans.lproj"
@@ -76,6 +77,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "UMengSocial/Umeng_SDK_Social_iOS_ARM64_4.3/UMSocial_Sdk_4.3/zh-Hans.lproj"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "HysteriaPlayer/HysteriaPlayer/point1sec.mp3"
   install_resource "MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "SMS-For-iOS/SMS_SDK/en.lproj"
   install_resource "SMS-For-iOS/SMS_SDK/zh-Hans.lproj"
