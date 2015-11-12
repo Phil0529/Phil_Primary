@@ -9,7 +9,6 @@
 #import "UploadPicsView.h"
 #import "EZPhilImageView.h"
 #import "FSMediaPicker.h"
-#import "UIImage+Color.h"
 
 @class FSMediaPicker;
 
@@ -178,6 +177,7 @@
         [self.delegate selectAgreement:btn];
     }
 }
+
 - (void)clickOnUpload:(UIButton *)btn{
     if (self.delegate && [self.delegate respondsToSelector:@selector(uploadPics:)]) {
         [self.delegate uploadPics:btn];
@@ -187,8 +187,6 @@
 - (void)refreshView{
     
 }
-
-
 
 - (void)tapShowProtocol{
     UIWebView *policy = [[UIWebView alloc] initWithFrame:CGRectMake(0.f, 0.f, SCREEN_WIDTH - 20.f, SCREEN_HEIGHT - 80.f)];

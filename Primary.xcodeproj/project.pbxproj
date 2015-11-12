@@ -54,7 +54,6 @@
 		823F0C0C1BE1BDAD00E6A514 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823F0C0B1BE1BDAD00E6A514 /* SystemConfiguration.framework */; };
 		823F0C131BE1CCDD00E6A514 /* BaiduMobFirstVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 823F0C121BE1CCDD00E6A514 /* BaiduMobFirstVC.m */; };
 		823F0C161BE1CCEF00E6A514 /* BaiduMobSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 823F0C151BE1CCEF00E6A514 /* BaiduMobSecondVC.m */; };
-		8255174C1BEB84B3009D10B3 /* UploadPicsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8255174B1BEB84B3009D10B3 /* UploadPicsManager.m */; };
 		8255174F1BEB8706009D10B3 /* EZUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8255174E1BEB8706009D10B3 /* EZUtils.m */; };
 		825517531BEB88AE009D10B3 /* Primary.t in Resources */ = {isa = PBXBuildFile; fileRef = 825517521BEB88AE009D10B3 /* Primary.t */; };
 		825517561BEB8DD1009D10B3 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 825517551BEB8DD1009D10B3 /* UIImage+Color.m */; };
@@ -198,8 +197,6 @@
 		823F0C121BE1CCDD00E6A514 /* BaiduMobFirstVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMobFirstVC.m; sourceTree = "<group>"; };
 		823F0C141BE1CCEF00E6A514 /* BaiduMobSecondVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaiduMobSecondVC.h; sourceTree = "<group>"; };
 		823F0C151BE1CCEF00E6A514 /* BaiduMobSecondVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaiduMobSecondVC.m; sourceTree = "<group>"; };
-		8255174A1BEB84B3009D10B3 /* UploadPicsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPicsManager.h; sourceTree = "<group>"; };
-		8255174B1BEB84B3009D10B3 /* UploadPicsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPicsManager.m; sourceTree = "<group>"; };
 		8255174D1BEB8706009D10B3 /* EZUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZUtils.h; sourceTree = "<group>"; };
 		8255174E1BEB8706009D10B3 /* EZUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZUtils.m; sourceTree = "<group>"; };
 		825517521BEB88AE009D10B3 /* Primary.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Primary.t; path = ../../../xiaohancheng/Documents/Primary/Primary.t; sourceTree = "<group>"; };
@@ -216,12 +213,12 @@
 		829E25461BE70FAD0081C08C /* UIImage+Function.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Function.m"; sourceTree = "<group>"; };
 		82A1189E1BDF9CD200D22130 /* UploadPicsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPicsVC.h; sourceTree = "<group>"; };
 		82A1189F1BDF9CD200D22130 /* UploadPicsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPicsVC.m; sourceTree = "<group>"; };
-		82A118B51BDF9DB300D22130 /* UploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadManager.h; sourceTree = "<group>"; };
-		82A118B61BDF9DB300D22130 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadManager.m; sourceTree = "<group>"; };
+		82A118B51BDF9DB300D22130 /* UploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadManager.h; path = ../../External/CMS_SDK/Manager/UploadManager.h; sourceTree = "<group>"; };
+		82A118B61BDF9DB300D22130 /* UploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadManager.m; path = ../../External/CMS_SDK/Manager/UploadManager.m; sourceTree = "<group>"; };
 		82A118C41BDF9DC700D22130 /* EZColumnItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZColumnItem.h; sourceTree = "<group>"; };
 		82A118C51BDF9DC700D22130 /* EZColumnItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZColumnItem.m; sourceTree = "<group>"; };
-		82A118DA1BDF9DC700D22130 /* UploadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadItem.h; sourceTree = "<group>"; };
-		82A118DB1BDF9DC700D22130 /* UploadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadItem.m; sourceTree = "<group>"; };
+		82A118DA1BDF9DC700D22130 /* UploadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadItem.h; path = ../../External/CMS_SDK/Model/UploadItem.h; sourceTree = "<group>"; };
+		82A118DB1BDF9DC700D22130 /* UploadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadItem.m; path = ../../External/CMS_SDK/Model/UploadItem.m; sourceTree = "<group>"; };
 		82FB327B1BE2FD3A00223E3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/JKImagePickerController.strings; sourceTree = "<group>"; };
 		82FB327C1BE2FD3A00223E3D /* ImagesPicker.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImagesPicker.xcassets; sourceTree = "<group>"; };
 		82FB327D1BE2FD3A00223E3D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/JKImagePickerController.strings"; sourceTree = "<group>"; };
@@ -573,8 +570,10 @@
 				82A1189F1BDF9CD200D22130 /* UploadPicsVC.m */,
 				821D906F1BDFAC910026E159 /* UploadPicsView.h */,
 				821D90701BDFAC910026E159 /* UploadPicsView.m */,
-				8255174A1BEB84B3009D10B3 /* UploadPicsManager.h */,
-				8255174B1BEB84B3009D10B3 /* UploadPicsManager.m */,
+				82A118B51BDF9DB300D22130 /* UploadManager.h */,
+				82A118B61BDF9DB300D22130 /* UploadManager.m */,
+				82A118DA1BDF9DC700D22130 /* UploadItem.h */,
+				82A118DB1BDF9DC700D22130 /* UploadItem.m */,
 			);
 			path = UploadPics;
 			sourceTree = "<group>";
@@ -603,8 +602,6 @@
 		82A118A31BDF9DA000D22130 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				82A118B51BDF9DB300D22130 /* UploadManager.h */,
-				82A118B61BDF9DB300D22130 /* UploadManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -614,8 +611,6 @@
 			children = (
 				82A118C41BDF9DC700D22130 /* EZColumnItem.h */,
 				82A118C51BDF9DC700D22130 /* EZColumnItem.m */,
-				82A118DA1BDF9DC700D22130 /* UploadItem.h */,
-				82A118DB1BDF9DC700D22130 /* UploadItem.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -942,7 +937,6 @@
 				82FB32AB1BE2FD8F00223E3D /* FSMediaPicker.m in Sources */,
 				82FB32B81BE2FF4D00223E3D /* EZPhilImageView.m in Sources */,
 				82FB32BA1BE2FF4D00223E3D /* NSDictionary+CLLocation.m in Sources */,
-				8255174C1BEB84B3009D10B3 /* UploadPicsManager.m in Sources */,
 				821D904A1BDFA6D70026E159 /* UserCenter.m in Sources */,
 				8214D05E1BE220320088E604 /* PageScrollView.m in Sources */,
 			);
@@ -1106,6 +1100,7 @@
 				);
 				GCC_PREFIX_HEADER = Primary/PrimaryPhil.pch;
 				INFOPLIST_FILE = Primary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/UMengAnalytics-NO-IDFA/**\"",
@@ -1150,6 +1145,7 @@
 				);
 				GCC_PREFIX_HEADER = Primary/PrimaryPhil.pch;
 				INFOPLIST_FILE = Primary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/UMengAnalytics-NO-IDFA/**\"",

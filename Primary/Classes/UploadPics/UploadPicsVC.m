@@ -24,47 +24,36 @@
 #import "EZWriteGPSToImagePhil.h"
 #import <MBProgressHUD.h>
 #import "UserCenter.h"
+#import "UploadItem.h"
+#import "UploadManager.h"
 
 #define MaxImageCount 8
-
-
-typedef NS_ENUM(NSUInteger, UploadType)
-{
-    UploadType_Image = 1,
-    UploadType_Video = 2,
-};
 
 
 @interface UploadPicsVC ()<MKMapViewDelegate,CLLocationManagerDelegate,UploadPicsVCDelegate,FSMediaPickerDelegate>
 {
     EZColumnItem *_columnItem;
-    MKMapView *_mapView;
-    CLGeocoder *_geocoder;
-    CLLocationManager *_locationManager;
     MKPlacemark *_placeMark;
     NSMutableDictionary *_locationDict;
-    
-    
     NSInteger _selectImgCount;
-    
     UploadType _uploadType;
+    AFHTTPRequestOperation *_uploadOperation;
     
 }
-
+@property (nonatomic, strong) CLGeocoder *geocoder;
+@property (nonatomic, strong) MKMapView *mapView;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) MBProgressHUD *mbProgressView;
 @property (nonatomic, strong) UploadPicsView *mainView;
 @property (nonatomic, strong) NSMutableArray *imagesArr;
 
 @end
 
-
-
 @implementation UploadPicsVC
 
 - (instancetype)initWithColumnItem:(EZColumnItem *)columnItem
 {
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         _columnItem = columnItem;
     }
     return self;
@@ -97,8 +86,6 @@ typedef NS_ENUM(NSUInteger, UploadType)
     _mbProgressView.labelText = LBLocalized(@"Uploading");
 }
 
-
-
 #pragma mark UploadPicsViewDelegate
 - (void)addPics:(UIButton *)btn{
     FSMediaPicker *mediaPicker = [[FSMediaPicker alloc]init];
@@ -110,6 +97,7 @@ typedef NS_ENUM(NSUInteger, UploadType)
     mediaPicker.delegate = self;
     [mediaPicker showFromView:btn];
 }
+
 - (void)selectAgreement:(UIButton *)btn{
     
 }
@@ -117,15 +105,12 @@ typedef NS_ENUM(NSUInteger, UploadType)
 - (void)removeImage:(NSInteger )imageTag{
     [self.imagesArr removeObjectAtIndex:imageTag];
     [_mainView refreshView:self.imagesArr.count andImageData:self.imagesArr];
-    
-    
 }
 
 - (void)uploadPics:(UIButton *)btn{
 //    if (_imagesArr.count == 0) {
 //        [EZUtils showNotifyMsg:LBLocalized(@"Reminder_Select_Photo") inView:self.view dismissed:nil];
 //    }
-//    
 //    else if (ISEMPTYSTR(_mainView.textDescView.text)) {
 //        [EZUtils showNotifyMsg:LBLocalized(@"Reminder_Add_Introduction") inView:self.view dismissed:nil];
 //    }
@@ -136,7 +121,6 @@ typedef NS_ENUM(NSUInteger, UploadType)
 //        [EZUtils showNotifyMsg:LBLocalized(@"Reminder_Agree_Accord") inView:self.view dismissed:nil];
 //    }
     if (NO) {
-       
     }
     else if (_uploadType == UploadType_Image) {
         EZWriteGPSToImagePhil *util = [[EZWriteGPSToImagePhil alloc]init];
@@ -155,17 +139,92 @@ typedef NS_ENUM(NSUInteger, UploadType)
         NSData *dataToUpload = [NSData dataWithContentsOfURL:[[_imagesArr firstObject] objectForKey:@"videoURL"]];
         [self uploadDataVideo:dataToUpload];
     }
-
 }
+
 - (void)uploadImages:(NSArray *)imagesArr{
     [_mbProgressView show:YES];
     [_mainView.uploadBtn setEnabled:NO];
     [_mainView.addBtn setEnabled:NO];
     NSString *mpno = [UserCenter defaultCenter].currentUser.mpno;
+    UploadItem *uItem = [UploadItem itemWithTitle:@" "
+                                             mpno:mpno
+                                             path:@""
+                                             type:_uploadType
+                                          content:_mainView.textDescView.text
+                                              lon:[_locationDict objectForKey:@"Longitude"]
+                                              lat:[_locationDict objectForKey:@"Latitude"]
+                                          address:[_locationDict objectForKey:@"Name"]];
+    _uploadOperation =
+    [UploadManager uploadFileWithColumnIdPhil:_columnItem.cid
+                                         item:uItem
+                                imagesDataArr:imagesArr
+                                         type:_uploadType
+                          uploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
+     {
+         float progress = (float)totalBytesWritten/totalBytesExpectedToWrite;
+         _mbProgressView.progress = progress;
+     }
+                                   completion:^(NSString *status)
+     {
+          _mbProgressView.hidden = YES;
+         if ([status isEqualToString:@"1"]) {
+             __weak __typeof(self) weakSelf = self;
+             [EZUtils showNotifyMsg:LBLocalized(@"upload_success") inView:self.view dismissed:^{
+                 if (weakSelf) {
+                     [weakSelf clickOnBack:nil];
+                 }
+             }];
+         }
+         else if(!status || [status isEqualToString:@"0"]){
+             [EZUtils showNotifyMsg:LBLocalized(@"upload_failed") inView:self.view dismissed:nil];
+             [_mainView.uploadBtn setEnabled:YES];
+             [_mainView.addBtn setEnabled:YES];
+         }
+     }];
+
     
 }
+- (void)clickOnBack:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)uploadDataVideo:(NSData *)data{
-    
+    [_mbProgressView show:YES];
+    [_mainView.uploadBtn setEnabled:NO];
+    [_mainView.addBtn setEnabled:NO];
+    NSString *mpno = [UserCenter defaultCenter].currentUser.mpno;
+    UploadItem *uItem = [UploadItem itemWithTitle:@" "
+                                             mpno:mpno
+                                             path:@""
+                                             type:_uploadType
+                                          content:_mainView.textDescView.text
+                                              lon:[_locationDict objectForKey:@"Longitude"]
+                                              lat:[_locationDict objectForKey:@"Latitude"]
+                                          address:[_locationDict objectForKey:@"Name"]];
+    __weak __typeof(self) weakSelf = self;
+    _uploadOperation =
+    [UploadManager uploadFileWithColumnIdPhil:_columnItem.cid
+                                         item:uItem
+                                         data:data
+                                         type:_uploadType
+                          uploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite)
+     {
+         _mbProgressView.progress = (float)totalBytesWritten/totalBytesExpectedToWrite;
+     }completion:^(NSString *status)
+     {
+         _mbProgressView.hidden = YES;
+         if (weakSelf) {
+             if ([status isEqualToString:@"1"]) {
+                 [EZUtils showNotifyMsg:LBLocalized(@"upload_success") inView:self.view dismissed:^{
+                     [weakSelf clickOnBack:nil];
+                 }];
+             } else {
+                 [EZUtils showNotifyMsg:LBLocalized(@"upload_failed") inView:self.view dismissed:nil];
+                 [_mainView.uploadBtn setEnabled:YES];
+                 [_mainView.addBtn setEnabled:YES];
+             }
+         }
+     }];
 }
 
 
@@ -188,7 +247,6 @@ typedef NS_ENUM(NSUInteger, UploadType)
                                     @"mediaInfoType":FSMediaInfoTypePhotoAlbum};
             [self.imagesArr addObject:dict];
         }
-        
     }
     if ([[mediaInfo objectForKey:@"mediaInfoType"] isEqualToString:FSMediaInfoTypeVedio]) {
         [_imagesArr removeAllObjects];
@@ -204,13 +262,9 @@ typedef NS_ENUM(NSUInteger, UploadType)
                                     @"thumbImage":[UIImage thumbnailImageForVideo:[mediaInfo mediaURL]],
                                     @"mediaInfoType":FSMediaInfoTypeVedio};
         [self.imagesArr addObject:dictVideo];
-
     }
     _selectImgCount = self.imagesArr.count; 
-    [_mainView refreshView:self.imagesArr.count andImageData:self.imagesArr] ;
-
-    
-    
+    [_mainView refreshView:self.imagesArr.count andImageData:self.imagesArr];
 }
 
 - (UploadPicsView *)mainView{
@@ -232,29 +286,39 @@ typedef NS_ENUM(NSUInteger, UploadType)
     }
     return _mbProgressView;
 }
-
-
-
-- (void)getGPSLocationUPVC{
-    _mapView = [[MKMapView alloc]initWithFrame:self.view.bounds];
-    _mapView.delegate = self;
-    [_mapView setShowsUserLocation:YES];
-    [_mapView setHidden:YES];
-    
-    _locationManager = [[CLLocationManager alloc] init];
-    if (IS_OS_8_OR_LATER) {
-        [_locationManager requestWhenInUseAuthorization];
+- (CLLocationManager *)locationManager{
+    if (!_locationManager) {
+        _locationManager = [[CLLocationManager alloc] init];
     }
-    _locationManager.delegate = self;
-    _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [_locationManager startUpdatingLocation];
+    return _locationManager;
+}
+- (MKMapView *)mapView{
+    if (_mapView) {
+        _mapView = [[MKMapView alloc] init];
+    }
+    return _mapView;
+}
+- (void)getGPSLocationUPVC{
+    
+    [self.mapView setFrame:self.view.bounds];
+    [self.mapView setDelegate:self];
+    [self.mapView setShowsUserLocation:YES];
+    [self.mapView setHidden:YES];
+
+    [self.locationManager setDelegate:self];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [self.locationManager startUpdatingLocation];
+    if (IS_OS_8_OR_LATER) {
+        [self.locationManager requestWhenInUseAuthorization];
+    }
+    
     _geocoder = [[CLGeocoder alloc] init];
 }
 
 #pragma mark CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     
-    [_locationManager stopUpdatingLocation];
+    [self.locationManager stopUpdatingLocation];
     
     [_locationDict addEntriesFromDictionary:[newLocation GPSDictionary]];
     
@@ -280,9 +344,4 @@ typedef NS_ENUM(NSUInteger, UploadType)
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
-
-
-
 @end

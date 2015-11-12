@@ -463,6 +463,7 @@ NSString *const FSMediaInfoTypeVedio = @"FSMediaInfoTypeVedio";
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
         imagePicker.mediaPicker = self;
+        
         [self delegatePerformWillPresentImagePicker:imagePicker];
         [self.currentVisibleController presentViewController:imagePicker animated:YES completion:nil];
     }
