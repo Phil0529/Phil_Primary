@@ -14,7 +14,7 @@
 
 #import "UIImageView+Addition.h"
 #import <objc/runtime.h>
-#import "EZWriteGPSToImagePhil.h"
+#import "PhilWriteGPSToImage.h"
 
 //static char imgURLKey;
 

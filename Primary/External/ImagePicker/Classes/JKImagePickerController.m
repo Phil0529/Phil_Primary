@@ -15,8 +15,8 @@
 #import "JKPromptView.h"
 #import "JKPhotoBrowser.h"
 #import "PhotoAlbumManager.h"
+#import "PhilWriteGPSToImage.h"
 
-#import "EZWriteGPSToImagePhil.h"
 ALAssetsFilter * ALAssetsFilterFromJKImagePickerControllerFilterType(JKImagePickerControllerFilterType type) {
     switch (type) {
         case JKImagePickerControllerFilterTypeNone:

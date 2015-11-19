@@ -13,7 +13,7 @@
 #define kBackViewColor          [UIColor blackColor]
 
 #import "EZPhilImageView.h"
-#import "EZWriteGPSToImagePhil.h"
+#import "PhilWriteGPSToImage.h"
 @implementation EZPhilImageView
 
 /*
@@ -60,8 +60,7 @@
     [coverView addGestureRecognizer:hiddenViewGecognizer];
     UIImageView *imageView = [[UIImageView alloc]init];
     if (_imgURL) {
-        EZWriteGPSToImagePhil *obj = [[EZWriteGPSToImagePhil alloc]init];
-        imageView.image = [obj philGetOrignalImageWithURL:_imgURL];
+        imageView.image = [PhilWriteGPSToImage getOrignalImageWithURL:_imgURL];
     }
     if (_orignalImg) {
         imageView.image = _orignalImg;

@@ -123,8 +123,8 @@
         [_checkBtn setImage:IMAGE(@"check_upload_ok_upvc") forState:1<<2];
         [_checkBtn addTarget:self action:@selector(clickOnCheckStatement:) forControlEvents:1<<6];
         [_fourthBgView addSubview:_checkBtn];
-        //
-        //
+        
+        
         //
         _agreementLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_checkBtn.frame), CGRectGetMinY(_checkBtn.frame), 101.5f, 40.f)];
         _agreementLabel.font = FONT(14.5f);

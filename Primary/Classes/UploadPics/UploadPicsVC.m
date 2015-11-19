@@ -21,7 +21,7 @@
 
 //Util
 #import "EZUtils.h"
-#import "EZWriteGPSToImagePhil.h"
+#import "PhilWriteGPSToImage.h"
 #import <MBProgressHUD.h>
 #import "UserCenter.h"
 #import "UploadItem.h"
@@ -34,12 +34,12 @@
 {
     EZColumnItem *_columnItem;
     MKPlacemark *_placeMark;
-    NSMutableDictionary *_locationDict;
     NSInteger _selectImgCount;
     UploadType _uploadType;
     AFHTTPRequestOperation *_uploadOperation;
     
 }
+@property (nonatomic, strong) NSMutableDictionary *locationDict;
 @property (nonatomic, strong) CLGeocoder *geocoder;
 @property (nonatomic, strong) MKMapView *mapView;
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -74,7 +74,6 @@
         self.automaticallyAdjustsScrollViewInsets =NO;
     }
 
-    _locationDict = [NSMutableDictionary new];
 }
 - (void)philInitUIUPVC{
     self.mainView.backgroundColor = BACKGROUND_COLOR;
@@ -123,14 +122,13 @@
     if (NO) {
     }
     else if (_uploadType == UploadType_Image) {
-        EZWriteGPSToImagePhil *util = [[EZWriteGPSToImagePhil alloc]init];
         NSMutableArray *imageDataArr = [NSMutableArray arrayWithCapacity:MaxImageCount];
         for (NSDictionary *dict in _imagesArr) {
             if (dict[@"mediaInfoType"] == FSMediaInfoTypePhotoAlbum) {
-                [imageDataArr addObject:[util philGetImgDataWithURL:[dict objectForKey:@"imageURL"] andLocation:_locationDict]];
+                [imageDataArr addObject:[PhilWriteGPSToImage getImgDataWithURL:[dict objectForKey:@"imageURL"] andLocation:self.locationDict]];
             }
             if (dict[@"mediaInfoType"] == FSMediaInfoTakePhoto) {
-                [imageDataArr addObject:[EZWriteGPSToImagePhil philGetImgDataWithImage:[dict objectForKey:@"originalImage"] andLocation:_locationDict]];
+                [imageDataArr addObject:[PhilWriteGPSToImage getImgDataWithImage:[dict objectForKey:@"originalImage"] andLocation:self.locationDict]];
             }
         }
         [self uploadImages:imageDataArr];
@@ -145,17 +143,18 @@
     [_mbProgressView show:YES];
     [_mainView.uploadBtn setEnabled:NO];
     [_mainView.addBtn setEnabled:NO];
-    NSString *mpno = [UserCenter defaultCenter].currentUser.mpno;
+//    NSString *mpno = [UserCenter defaultCenter].currentUser.mpno;
+    NSString *mpno = @"15201594312";
     UploadItem *uItem = [UploadItem itemWithTitle:@" "
                                              mpno:mpno
                                              path:@""
                                              type:_uploadType
                                           content:_mainView.textDescView.text
-                                              lon:[_locationDict objectForKey:@"Longitude"]
-                                              lat:[_locationDict objectForKey:@"Latitude"]
-                                          address:[_locationDict objectForKey:@"Name"]];
+                                              lon:[self.locationDict objectForKey:@"Longitude"]
+                                              lat:[self.locationDict objectForKey:@"Latitude"]
+                                          address:[self.locationDict objectForKey:@"Name"]];
     _uploadOperation =
-    [UploadManager uploadFileWithColumnIdPhil:_columnItem.cid
+    [UploadManager uploadFileWithColumnIdPhil:7000  //_columnItem.cid
                                          item:uItem
                                 imagesDataArr:imagesArr
                                          type:_uploadType
@@ -198,10 +197,11 @@
                                              path:@""
                                              type:_uploadType
                                           content:_mainView.textDescView.text
-                                              lon:[_locationDict objectForKey:@"Longitude"]
-                                              lat:[_locationDict objectForKey:@"Latitude"]
-                                          address:[_locationDict objectForKey:@"Name"]];
+                                              lon:[self.locationDict objectForKey:@"Longitude"]
+                                              lat:[self.locationDict objectForKey:@"Latitude"]
+                                          address:[self.locationDict objectForKey:@"Name"]];
     __weak __typeof(self) weakSelf = self;
+    
     _uploadOperation =
     [UploadManager uploadFileWithColumnIdPhil:_columnItem.cid
                                          item:uItem
@@ -230,6 +230,7 @@
 
 #pragma mark FSMediaPickerDelegate
 - (void)mediaPicker:(FSMediaPicker *)mediaPicker didFinishWithMediaInfo:(NSDictionary *)mediaInfo{
+    
     if ([[mediaInfo objectForKey:@"mediaInfoType"] isEqualToString:FSMediaInfoTakePhoto]) {
         UIImage *thumbImg = [self getOriginImage:[mediaInfo originalImage] scaleToSize:CGSizeMake(157.f, 157.f)];
         _uploadType = UploadType_Image;
@@ -286,6 +287,13 @@
     }
     return _mbProgressView;
 }
+
+- (NSMutableDictionary *)locationDict{
+    if (!_locationDict) {
+        _locationDict = [[NSMutableDictionary alloc]initWithCapacity:20];
+    }
+    return _locationDict;
+}
 - (CLLocationManager *)locationManager{
     if (!_locationManager) {
         _locationManager = [[CLLocationManager alloc] init];
@@ -298,6 +306,8 @@
     }
     return _mapView;
 }
+
+
 - (void)getGPSLocationUPVC{
     
     [self.mapView setFrame:self.view.bounds];
@@ -312,7 +322,7 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     
-    _geocoder = [[CLGeocoder alloc] init];
+    self.geocoder = [[CLGeocoder alloc] init];
 }
 
 #pragma mark CLLocationManagerDelegate
@@ -320,12 +330,12 @@
     
     [self.locationManager stopUpdatingLocation];
     
-    [_locationDict addEntriesFromDictionary:[newLocation GPSDictionary]];
+    [self.locationDict addEntriesFromDictionary:[newLocation GPSDictionary]];
     
-    [_geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+    [self.geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
         _placeMark = [placemarks objectAtIndex:0];
-        _mainView.locaLabel.text = [_placeMark.addressDictionary objectForKey:@"Name"];
-        [_locationDict addEntriesFromDictionary:_placeMark.addressDictionary];
+        self.mainView.locaLabel.text = [_placeMark.addressDictionary objectForKey:@"Name"];
+        [self.locationDict addEntriesFromDictionary:_placeMark.addressDictionary];
     }];
 }
 

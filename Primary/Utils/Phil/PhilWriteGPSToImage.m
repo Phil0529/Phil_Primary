@@ -1,24 +1,24 @@
 //
-//  EZWriteGPSToImagePhil.m
-//  EZTV
+//  PhilWriteGPSToImage.m
+//  Primary
 //
-//  Created by 肖翰程 on 15/9/13.
-//  Copyright (c) 2015年 Joygo. All rights reserved.
+//  Created by Phil Xhc on 15/11/16.
+//  Copyright © 2015年 Xhc. All rights reserved.
 //
 
-#import "EZWriteGPSToImagePhil.h"
+#import "PhilWriteGPSToImage.h"
+#import <ImageIO/ImageIO.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@implementation EZWriteGPSToImagePhil
 
-//*
+@implementation PhilWriteGPSToImage
 
-- (UIImage *)philGetOrignalImageWithURL:(NSURL *)imgAssetURL{
++ (UIImage *)getOrignalImageWithURL:(NSURL *)imgAssetURL{
     __block UIImage *orignalImage = [UIImage new];
-    
+    __block ALAssetsLibrary *lib = [ALAssetsLibrary new];
     dispatch_semaphore_t getImg = dispatch_semaphore_create(0);
-    dispatch_queue_t queue = dispatch_queue_create("Phil_Get_Img_Data", DISPATCH_QUEUE_SERIAL);
-    ALAssetsLibrary *lib = [ALAssetsLibrary new];
+    dispatch_queue_t queue = dispatch_queue_create("Get_Img_Data_PWGPSTI", DISPATCH_QUEUE_SERIAL);
+    
     dispatch_async(queue, ^{
         [lib assetForURL:imgAssetURL resultBlock:^(ALAsset *asset) {
             orignalImage = [UIImage imageWithCGImage:[[asset defaultRepresentation] fullScreenImage]];
@@ -32,15 +32,13 @@
     return orignalImage;
 }
 
-// */
-
-- (NSData *)philGetImgDataWithURL:(NSURL *)imgAssetURL andLocation:(NSDictionary *)locationDict{
++ (NSData *)getImgDataWithURL:(NSURL *)imgAssetURL andLocation:(NSDictionary *)locationDict{
     
     __block NSData *imgData = [NSData new];
-    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    dispatch_queue_t queue = dispatch_queue_create("Phil_Modify_GPS_Information", DISPATCH_QUEUE_SERIAL);
-    ALAssetsLibrary *lib = [[ALAssetsLibrary alloc]init];
-    //    [self getGPSLocation];
+    __block dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    __block dispatch_queue_t queue = dispatch_queue_create("Modify_GPS_Information_PWGPSTI", DISPATCH_QUEUE_SERIAL);
+    __block ALAssetsLibrary *lib = [[ALAssetsLibrary alloc]init];
+    
     dispatch_async(queue, ^{
         [lib assetForURL:imgAssetURL resultBlock:^(ALAsset *asset) {
             ALAssetRepresentation *assetRep = [asset defaultRepresentation];
@@ -117,7 +115,7 @@
                 CGImageDestinationRef destination = CGImageDestinationCreateWithData(( CFMutableDataRef)newImageData, UTI, 1, NULL);
                 
                 if(!destination)
-                    NSLog(@"***Could not create image destination ***");
+                    SWLogD(@"***Could not create image destination ***");
                 
                 //add the image contained in the image source to the destination, overidding the old metadata with our modified metadata
                 CGImageDestinationAddImageFromSource(destination, imgSource, 0, ( CFDictionaryRef) metadataAsMutable);
@@ -128,16 +126,15 @@
                 success = CGImageDestinationFinalize(destination);
                 
                 if(!success)
-                    NSLog(@"***Could not create data from image destination ***");
+                    SWLogD(@"***Could not create data from image destination ***");
                 
                 imgData = newImageData;
             }
-            //发出已完成的信号
             dispatch_semaphore_signal(sema);
         }
          
             failureBlock:^(NSError *error) {
-                NSLog(@"error = %@",error.description);
+                SWLogD(@"error = %@",error.description);
                 dispatch_semaphore_signal(sema);
             }];
         
@@ -147,13 +144,12 @@
     
 }
 
-+ (NSData *)philGetImgDataWithImage:(UIImage *)editedImage andLocation:(NSDictionary *)locationDict{
-    
++ (NSData *)getImgDataWithImage:(UIImage *)sourceImage andLocation:(NSDictionary *)locationDict{
     if (!locationDict || [locationDict allKeys].count == 0){
-        return  UIImageJPEGRepresentation(editedImage, 0.5);
+        return  UIImageJPEGRepresentation(sourceImage, 0.5);
     }
     else{
-        NSData *imageNSData = UIImageJPEGRepresentation(editedImage,0.5);
+        NSData *imageNSData = UIImageJPEGRepresentation(sourceImage,0.5);
         CGImageSourceRef imgSource = CGImageSourceCreateWithData(( CFDataRef)imageNSData, NULL);
         NSDictionary *metadata = ( NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(imgSource, 0, NULL));
         
@@ -220,7 +216,7 @@
         CGImageDestinationRef destination = CGImageDestinationCreateWithData(( CFMutableDataRef)newImageData, UTI, 1, NULL);
         
         if(!destination)
-            NSLog(@"***Could not create image destination ***");
+            SWLogD(@"***Could not create image destination ***");
         
         //add the image contained in the image source to the destination, overidding the old metadata with our modified metadata
         CGImageDestinationAddImageFromSource(destination, imgSource, 0, ( CFDictionaryRef) metadataAsMutable);
@@ -231,23 +227,12 @@
         success = CGImageDestinationFinalize(destination);
         
         if(!success)
-            NSLog(@"***Could not create data from image destination ***");
+            SWLogD(@"***Could not create data from image destination ***");
         
         
         return  newImageData;
     }
-    
+
 }
-//- (NSString *)getTimeNow
-//{
-//    NSString* date;
-//
-//    NSDateFormatter * formatter = [[NSDateFormatter alloc ] init];
-//    //[formatter setDateFormat:@"YYYY.MM.dd.hh.mm.ss"];
-//    [formatter setDateFormat:@"YYYY-MM-dd hh:mm:ss:SSS"];
-//    date = [formatter stringFromDate:[NSDate date]];
-//    NSString*timeNow = [[NSString alloc] initWithFormat:@"%@", date];
-//    return timeNow;
-//}
 
 @end

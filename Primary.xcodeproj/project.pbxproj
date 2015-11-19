@@ -58,6 +58,7 @@
 		825517531BEB88AE009D10B3 /* Primary.t in Resources */ = {isa = PBXBuildFile; fileRef = 825517521BEB88AE009D10B3 /* Primary.t */; };
 		825517561BEB8DD1009D10B3 /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 825517551BEB8DD1009D10B3 /* UIImage+Color.m */; };
 		8255175C1BEB956C009D10B3 /* AppServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8255175B1BEB956C009D10B3 /* AppServer.m */; };
+		82683F201BFABB2D0005D3BE /* CMSDataQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 82683F1F1BFABB2D0005D3BE /* CMSDataQuery.m */; };
 		8283F3591BF0D256005958FB /* GCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283F3581BF0D256005958FB /* GCDViewController.m */; };
 		8283F35C1BF0E706005958FB /* GCDAPIVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8283F35B1BF0E706005958FB /* GCDAPIVC.m */; };
 		829E25441BE706E70081C08C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 829E25431BE706E70081C08C /* Localizable.strings */; };
@@ -66,6 +67,8 @@
 		82A118BF1BDF9DB300D22130 /* UploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A118B61BDF9DB300D22130 /* UploadManager.m */; };
 		82A118DE1BDF9DC700D22130 /* EZColumnItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A118C51BDF9DC700D22130 /* EZColumnItem.m */; };
 		82A118E91BDF9DC700D22130 /* UploadItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A118DB1BDF9DC700D22130 /* UploadItem.m */; };
+		82F14A0A1BFB09A4005364C1 /* UploadItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F14A091BFB09A4005364C1 /* UploadItemTest.m */; };
+		82FA390D1BF9F3DE000C903B /* PhilWriteGPSToImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FA390C1BF9F3DE000C903B /* PhilWriteGPSToImage.m */; };
 		82FB32991BE2FD3A00223E3D /* JKImagePickerController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 82FB327A1BE2FD3A00223E3D /* JKImagePickerController.strings */; };
 		82FB329A1BE2FD3A00223E3D /* ImagesPicker.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82FB327C1BE2FD3A00223E3D /* ImagesPicker.xcassets */; };
 		82FB329B1BE2FD3A00223E3D /* JKAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FB32801BE2FD3A00223E3D /* JKAssets.m */; };
@@ -84,7 +87,6 @@
 		82FB32AB1BE2FD8F00223E3D /* FSMediaPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FB32AA1BE2FD8F00223E3D /* FSMediaPicker.m */; };
 		82FB32B71BE2FF4D00223E3D /* CLLocation+GPSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FB32AE1BE2FF4D00223E3D /* CLLocation+GPSDictionary.m */; };
 		82FB32B81BE2FF4D00223E3D /* EZPhilImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FB32B01BE2FF4D00223E3D /* EZPhilImageView.m */; };
-		82FB32B91BE2FF4D00223E3D /* EZWriteGPSToImagePhil.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FB32B21BE2FF4D00223E3D /* EZWriteGPSToImagePhil.m */; };
 		82FB32BA1BE2FF4D00223E3D /* NSDictionary+CLLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FB32B41BE2FF4D00223E3D /* NSDictionary+CLLocation.m */; };
 		82FB32BB1BE2FF4D00223E3D /* UIImageView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 82FB32B61BE2FF4D00223E3D /* UIImageView+Addition.m */; };
 /* End PBXBuildFile section */
@@ -204,6 +206,8 @@
 		825517551BEB8DD1009D10B3 /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		8255175A1BEB956C009D10B3 /* AppServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppServer.h; sourceTree = "<group>"; };
 		8255175B1BEB956C009D10B3 /* AppServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppServer.m; sourceTree = "<group>"; };
+		82683F1E1BFABB2D0005D3BE /* CMSDataQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSDataQuery.h; sourceTree = "<group>"; };
+		82683F1F1BFABB2D0005D3BE /* CMSDataQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMSDataQuery.m; sourceTree = "<group>"; };
 		8283F3571BF0D256005958FB /* GCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDViewController.h; sourceTree = "<group>"; };
 		8283F3581BF0D256005958FB /* GCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDViewController.m; sourceTree = "<group>"; };
 		8283F35A1BF0E706005958FB /* GCDAPIVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAPIVC.h; sourceTree = "<group>"; };
@@ -219,6 +223,10 @@
 		82A118C51BDF9DC700D22130 /* EZColumnItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZColumnItem.m; sourceTree = "<group>"; };
 		82A118DA1BDF9DC700D22130 /* UploadItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UploadItem.h; path = ../../External/CMS_SDK/Model/UploadItem.h; sourceTree = "<group>"; };
 		82A118DB1BDF9DC700D22130 /* UploadItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UploadItem.m; path = ../../External/CMS_SDK/Model/UploadItem.m; sourceTree = "<group>"; };
+		82F14A081BFB09A4005364C1 /* UploadItemTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadItemTest.h; sourceTree = "<group>"; };
+		82F14A091BFB09A4005364C1 /* UploadItemTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadItemTest.m; sourceTree = "<group>"; };
+		82FA390B1BF9F3DE000C903B /* PhilWriteGPSToImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhilWriteGPSToImage.h; sourceTree = "<group>"; };
+		82FA390C1BF9F3DE000C903B /* PhilWriteGPSToImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhilWriteGPSToImage.m; sourceTree = "<group>"; };
 		82FB327B1BE2FD3A00223E3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/JKImagePickerController.strings; sourceTree = "<group>"; };
 		82FB327C1BE2FD3A00223E3D /* ImagesPicker.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ImagesPicker.xcassets; sourceTree = "<group>"; };
 		82FB327D1BE2FD3A00223E3D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/JKImagePickerController.strings"; sourceTree = "<group>"; };
@@ -254,8 +262,6 @@
 		82FB32AE1BE2FF4D00223E3D /* CLLocation+GPSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+GPSDictionary.m"; sourceTree = "<group>"; };
 		82FB32AF1BE2FF4D00223E3D /* EZPhilImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPhilImageView.h; sourceTree = "<group>"; };
 		82FB32B01BE2FF4D00223E3D /* EZPhilImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZPhilImageView.m; sourceTree = "<group>"; };
-		82FB32B11BE2FF4D00223E3D /* EZWriteGPSToImagePhil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZWriteGPSToImagePhil.h; sourceTree = "<group>"; };
-		82FB32B21BE2FF4D00223E3D /* EZWriteGPSToImagePhil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZWriteGPSToImagePhil.m; sourceTree = "<group>"; };
 		82FB32B31BE2FF4D00223E3D /* NSDictionary+CLLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CLLocation.h"; sourceTree = "<group>"; };
 		82FB32B41BE2FF4D00223E3D /* NSDictionary+CLLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CLLocation.m"; sourceTree = "<group>"; };
 		82FB32B51BE2FF4D00223E3D /* UIImageView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Addition.h"; sourceTree = "<group>"; };
@@ -574,6 +580,8 @@
 				82A118B61BDF9DB300D22130 /* UploadManager.m */,
 				82A118DA1BDF9DC700D22130 /* UploadItem.h */,
 				82A118DB1BDF9DC700D22130 /* UploadItem.m */,
+				82F14A081BFB09A4005364C1 /* UploadItemTest.h */,
+				82F14A091BFB09A4005364C1 /* UploadItemTest.m */,
 			);
 			path = UploadPics;
 			sourceTree = "<group>";
@@ -602,6 +610,8 @@
 		82A118A31BDF9DA000D22130 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				82683F1E1BFABB2D0005D3BE /* CMSDataQuery.h */,
+				82683F1F1BFABB2D0005D3BE /* CMSDataQuery.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -678,12 +688,12 @@
 		82FB32AC1BE2FF4D00223E3D /* Phil */ = {
 			isa = PBXGroup;
 			children = (
+				82FA390B1BF9F3DE000C903B /* PhilWriteGPSToImage.h */,
+				82FA390C1BF9F3DE000C903B /* PhilWriteGPSToImage.m */,
 				82FB32AD1BE2FF4D00223E3D /* CLLocation+GPSDictionary.h */,
 				82FB32AE1BE2FF4D00223E3D /* CLLocation+GPSDictionary.m */,
 				82FB32AF1BE2FF4D00223E3D /* EZPhilImageView.h */,
 				82FB32B01BE2FF4D00223E3D /* EZPhilImageView.m */,
-				82FB32B11BE2FF4D00223E3D /* EZWriteGPSToImagePhil.h */,
-				82FB32B21BE2FF4D00223E3D /* EZWriteGPSToImagePhil.m */,
 				82FB32B31BE2FF4D00223E3D /* NSDictionary+CLLocation.h */,
 				82FB32B41BE2FF4D00223E3D /* NSDictionary+CLLocation.m */,
 				82FB32B51BE2FF4D00223E3D /* UIImageView+Addition.h */,
@@ -885,6 +895,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82FA390D1BF9F3DE000C903B /* PhilWriteGPSToImage.m in Sources */,
 				8255175C1BEB956C009D10B3 /* AppServer.m in Sources */,
 				8283F3591BF0D256005958FB /* GCDViewController.m in Sources */,
 				82FB32A61BE2FD3A00223E3D /* PhotoAlbumManager.m in Sources */,
@@ -917,12 +928,13 @@
 				821D90711BDFAC910026E159 /* UploadPicsView.m in Sources */,
 				82FB329E1BE2FD3A00223E3D /* JKAssetsGroupsView.m in Sources */,
 				823F0C161BE1CCEF00E6A514 /* BaiduMobSecondVC.m in Sources */,
-				82FB32B91BE2FF4D00223E3D /* EZWriteGPSToImagePhil.m in Sources */,
 				821D90451BDFA3B60026E159 /* AFCMSClient.m in Sources */,
 				823F0C131BE1CCDD00E6A514 /* BaiduMobFirstVC.m in Sources */,
 				82FB32A01BE2FD3A00223E3D /* JKAssetsViewCell.m in Sources */,
 				82FB32A41BE2FD3A00223E3D /* JKPromptView.m in Sources */,
+				82683F201BFABB2D0005D3BE /* CMSDataQuery.m in Sources */,
 				82FB32B71BE2FF4D00223E3D /* CLLocation+GPSDictionary.m in Sources */,
+				82F14A0A1BFB09A4005364C1 /* UploadItemTest.m in Sources */,
 				821D90511BDFA74E0026E159 /* UserModel.m in Sources */,
 				8283F35C1BF0E706005958FB /* GCDAPIVC.m in Sources */,
 				82FB329F1BE2FD3A00223E3D /* JKAssetsThumbnailView.m in Sources */,
@@ -1123,7 +1135,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Phil.Primary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "effb662d-2cc9-4e1e-a596-598016fbe23a";
+				PROVISIONING_PROFILE = "b4fb6638-7e73-4e2d-8c39-d296fb4b7b15";
 			};
 			name = Debug;
 		};
@@ -1168,7 +1180,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Phil.Primary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "effb662d-2cc9-4e1e-a596-598016fbe23a";
+				PROVISIONING_PROFILE = "b4fb6638-7e73-4e2d-8c39-d296fb4b7b15";
 			};
 			name = Release;
 		};
